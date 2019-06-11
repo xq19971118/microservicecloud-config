@@ -1,0 +1,79 @@
+spring:
+    profiles:
+    active:
+    - dev
+    
+---
+server:
+    port: 8001
+spring:
+    profiles: dev
+    application:
+        name: microservicecloud-config-dept-client
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.123.128:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 123456
+        dbcp2:
+            min-idle: 5
+            initial-size: 5
+            max-total: 5
+            max-wait-millis: 200
+mybatis:
+    config-location: classpath:mybatis/mybatis.cfg.xml
+    type-aliases-package: com.example.api.bean
+    mapper-locations: 
+    - classpath:mybatis/mapper/**/*.xml
+    
+eureka:
+    instance:
+        instance-id: provider-dept-8001
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+            defaultZone: http://eureka7001.com:7001/eureka/
+info:
+    app.name: provider-dept-8001
+    company.name: hotcomm
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$
+---
+server:
+    port: 8001
+spring:
+    profiles: test
+    application:
+        name: microservicecloud-config-dept-client
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.123.128:3306/test02?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 123456
+        dbcp2:
+            min-idle: 5
+            initial-size: 5
+            max-total: 5
+            max-wait-millis: 200
+mybatis:
+    config-location: classpath:mybatis/mybatis.cfg.xml
+    type-aliases-package: com.example.api.bean
+    mapper-locations: 
+    - classpath:mybatis/mapper/**/*.xml
+    
+eureka:
+    instance:
+        instance-id: provider-dept-8001
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+            defaultZone: http://eureka7001.com:7001/eureka/
+info:
+    app.name: provider-dept-8001
+    company.name: hotcomm
+    build.artifactId: $project.artifactId$
+    build.version: $project.version$
